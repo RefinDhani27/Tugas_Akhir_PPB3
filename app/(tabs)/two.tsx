@@ -1,15 +1,43 @@
-import { StyleSheet } from 'react-native';
+import { ScrollView, TextInput, Image, StyleSheet } from 'react-native';
 
-import EditScreenInfo from '../../components/EditScreenInfo';
 import { Text, View } from '../../components/Themed';
 
+const logo = require('../../assets/images/logo.png')
 export default function TabTwoScreen() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Tab Two</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="app/(tabs)/two.tsx" />
-    </View>
+    <ScrollView>
+      <View style={styles.container}>
+        <Image source={logo} style={{ height: 40, marginTop: 80}} resizeMode="contain" />
+        <Text style={styles.text}>Daftar akun untuk melanjutkan ke {'\n'}Rekom Movie</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Nama"
+          placeholderTextColor="gray"
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Email"
+          placeholderTextColor="gray"
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="No HP"
+          placeholderTextColor="gray"
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Kata Sandi"
+          placeholderTextColor="gray"
+        />
+        <Text style={styles.textDua}>
+          Saya setuju dengan <Text style={styles.highlightedText}> Ketentuan Layanan </Text> {'\n'}Recom Movie, <Text style={styles.highlightedText}> Kebijakan Privasi </Text>, dan{'\n'}<Text style={styles.highlightedText}>Pengaturan Pemberitahuan default </Text>
+        </Text>
+        
+        <Text style={styles.text}>
+          Sudah memiliki akun? <Text style={styles.highlightedText}>Masuk</Text>
+        </Text>
+      </View>
+    </ScrollView>
   );
 }
 
@@ -18,14 +46,33 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: '#062148',
   },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
+  text: {
+    color: 'white',
+    marginTop: 40,
+    marginBottom: 55,
+    textAlign: 'center'
   },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
+  textDua: {
+    color: 'white',
+    marginTop: 40,
+    marginBottom: 55,
+    textAlign: 'left'
+  },
+  highlightedText: {
+    color: '#3AB6D1'
+  },
+  input: {
+    height: 45,
+    borderColor: '#304665',
+    borderWidth: 1,
+    borderRadius: 10,
+    paddingLeft: 15,
+    fontSize: 17,
+    width: '85%',
+    marginTop: 15,
+    marginHorizontal: 10,
+    backgroundColor: '#304665'
   },
 });
