@@ -19,7 +19,7 @@ export default function TabTwoScreen() {
     <ScrollView>
       <View style={styles.container}>
         <View style={styles.biruAtas}>
-          <Image source={logo} style={{ height: 40, marginTop: 80 }} resizeMode="contain" />
+          <Image source={logo} style={{ height: 40, marginTop: 130 }} resizeMode="contain" />
           <Text style={styles.text}>Daftar akun untuk melanjutkan ke {'\n'}Rekom Movie</Text>
         </View>
         <TextInput
@@ -96,8 +96,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#062148',
   },
   biruAtas: {
-    height: 240,
-    width: "100%",
+    height: 280,
+    width: 420,
     backgroundColor: "#0C3358",
     alignItems: 'center',
     borderBottomLeftRadius: 2000,
