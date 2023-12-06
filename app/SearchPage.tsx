@@ -1,10 +1,8 @@
-import { View } from '../../components/Themed';
 import React from 'react';
-import { StyleSheet, TextInput } from 'react-native';
+import { StyleSheet, TextInput, View } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 
-export default function TabThreeScreen() {
-
+export default function SearchPage() {
     const [query, setQuery] = React.useState('');
 
     return (

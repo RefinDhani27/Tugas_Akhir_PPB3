@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import Checkbox from 'expo-checkbox';
-import { Text, View } from '../../components/Themed';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { ScrollView, TextInput, Image, StyleSheet } from 'react-native';
+import { Text, View, ScrollView, TextInput, Image, StyleSheet } from 'react-native';
 
-const logo = require('../../assets/images/logo.png');
-export default function TabTwoScreen() {
+const logo = require('../assets/images/logo.png');
 
+export default function Register() {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const toggleShowPassword = () => {
