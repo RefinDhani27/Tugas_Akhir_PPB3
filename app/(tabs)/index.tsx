@@ -16,6 +16,9 @@ export default function TabOneScreen() {
       <TouchableOpacity onPress={() => router.push("/Login")}>
         <Text>Anjay</Text>
       </TouchableOpacity>
+      <TouchableOpacity onPress={() => router.push("/HomePage")}>
+        <Text>Anjay</Text>
+      </TouchableOpacity>
       <EditScreenInfo path="app/(tabs)/index.tsx" />
     </View>
   );

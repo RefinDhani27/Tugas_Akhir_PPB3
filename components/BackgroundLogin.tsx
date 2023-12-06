@@ -6,7 +6,7 @@ export default function BackgroundLogin() {
       style={{
         width: "100%",
         height: "100%",
-
+        position: "absolute",
         backgroundColor: "#062148",
       }}
     >
@@ -16,10 +16,11 @@ export default function BackgroundLogin() {
 }
 const styles = StyleSheet.create({
   biruAtas: {
-    height: "30%",
-    width: "100%",
+    height: "37%",
+    width: "120%",
+    alignSelf: "center",
     backgroundColor: "#0C3358",
-    borderBottomLeftRadius: 2000,
-    borderBottomRightRadius: 2000,
+    borderBottomLeftRadius: 10000,
+    borderBottomEndRadius: 10000,
   },
 });
