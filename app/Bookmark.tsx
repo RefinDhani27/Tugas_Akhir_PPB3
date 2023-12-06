@@ -2,23 +2,23 @@ import React from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity, ScrollView, StatusBar } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 
-export default function TabThreeScreen() {
+export default function Bookmark() {
 
     const films = [
         {
             title: 'Interstellar',
             genre: 'Film Action',
-            image: require('../../assets/images/Film_1.png'),
+            image: require('../assets/images/Film_1.png'),
         },
         {
             title: 'Asu Mare!',
             genre: 'Film Komedi',
-            image: require('../../assets/images/Film_2.png'),
+            image: require('../assets/images/Film_2.png'),
         },
         {
             title: 'The Mother',
             genre: 'Film Action',
-            image: require('../../assets/images/Film_3.png'),
+            image: require('../assets/images/Film_3.png'),
         }
     ];
 
