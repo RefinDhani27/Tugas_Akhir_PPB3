@@ -22,7 +22,7 @@ export default function Login() {
       <BackgroundLogin />
       <View style={{ height: "10%" }} />
       <Image
-        source={require("../assets/images/splash_icon.png")}
+        source={require("../assets/images/logo.png")}
         style={{ alignSelf: "center" }}
       />
       <Text style={{ color: "#fff", width: "70%", textAlign: "center" }}>
@@ -54,7 +54,7 @@ export default function Login() {
         </TouchableOpacity>
         <View style={{ flexDirection: "row", gap: 5 }}>
           <Text style={styles.Text}>Belum memiliki akun?</Text>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => router.push("/Register")}>
             <Text style={styles.link}>Daftar</Text>
           </TouchableOpacity>
         </View>
