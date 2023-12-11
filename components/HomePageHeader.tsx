@@ -1,4 +1,3 @@
-import { router } from "expo-router";
 import React, { useState, useRef } from "react";
 import {
   Text,
@@ -12,12 +11,12 @@ import {
   NativeScrollEvent,
 } from "react-native";
 
-const logo = require("../../assets/images/logo.png");
+const logo = require("../assets/images/logo.png");
 
 const carouselImages = [
-  require("../../assets/images/gambar_1.png"),
-  require("../../assets/images/gambar_1.png"),
-  require("../../assets/images/gambar_1.png"),
+  require("../assets/images/gambar_1.png"),
+  require("../assets/images/gambar_1.png"),
+  require("../assets/images/gambar_1.png"),
 ];
 
 const { width } = Dimensions.get("window");
@@ -68,10 +67,7 @@ export default function TabOneScreen() {
           Selamat Datang di {"\n"}Recom Movie
         </Text>
       </View>
-      <TouchableOpacity
-        style={styles.buttonMasukContainer}
-        onPress={() => router.push("/Login")}
-      >
+      <TouchableOpacity style={styles.buttonMasukContainer}>
         <Text style={styles.buttonMasuk}>MASUK</Text>
       </TouchableOpacity>
       <View style={styles.putihBawah} />
