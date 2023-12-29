@@ -11,19 +11,46 @@ import HomePageHeader from "../components/HomePageHeader";
 import { Ionicons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from "axios";
+import { useState } from "react";
 
 export default function HomePage() {
-  const getData = async () => {
+  const [token, setToken] = useState("");
+  const getToken = async () => {
     try {
       const value = await AsyncStorage.getItem("token");
       if (value !== null) {
-        console.log(value);
+        setToken(value);
       }
     } catch (e) {
       // error reading value
     }
   };
-  getData();
+  async function getData() {
+    try {
+      // Assuming getData is a function that returns the bearer token
+      getToken(); // Call the function to get the token
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json", // You may need to adjust the content type based on your API requirements
+        },
+      };
+      console.log("Request Config:", config); // Log request configuration
+
+      const response = await axios.get(
+        "http://192.168.1.73/api/movie/",
+        config
+      );
+      console.log("ok");
+      return response.data;
+    } catch (error) {
+      console.error(error);
+    }
+    return null;
+  }
+  console.log(getData);
+
   return (
     <View style={{ backgroundColor: "#031126", width: "100%" }}>
       <ScrollView style={{ backgroundColor: "#062148", width: "100%" }}>
@@ -156,7 +183,7 @@ export default function HomePage() {
 
 const styles = StyleSheet.create({
   imageStyle: {
-    width: Dimensions.get("screen").width / 2.2,
+    width: Dimensions.get("screen").width / 2.5,
     backgroundColor: "red",
     height: Dimensions.get("screen").width / 2.2 / 0.625,
     borderRadius: 20,
