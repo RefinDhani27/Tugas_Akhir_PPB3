@@ -11,8 +11,52 @@ import BackgroundLogin from "../components/BackgroundLogin";
 import SafeArea from "../components/SafeArea";
 import { router } from "expo-router";
 import HomePage from "./HomePage";
+import axios from "axios";
+import { useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const storeData = async (value: string) => {
+    try {
+      await AsyncStorage.setItem("token", value);
+    } catch (e) {
+      // saving error
+    }
+  };
+  const postData = async () => {
+    try {
+      const data = {
+        email: email,
+        password: password,
+      };
+
+      const response = await axios.post("http://192.168.1.73/api/login", data); // Replace with your API endpoint
+      console.log(response.data);
+
+      if (response.data["data"]["token"] != null) {
+        storeData(response.data["data"]["token"]);
+
+        console.log("anj");
+        router.push("/HomePage");
+      }
+    } catch (error) {
+      console.error("Error posting data:", error);
+    }
+  };
+  const getData = async () => {
+    try {
+      const value = await AsyncStorage.getItem("token");
+      if (value !== null) {
+        console.log(value);
+        router.push("/HomePage");
+      }
+    } catch (e) {
+      // error reading value
+    }
+  };
+  getData();
   return (
     <View
       style={{ width: "100%", height: "100%", alignItems: "center", gap: 30 }}
@@ -39,16 +83,20 @@ export default function Login() {
           style={styles.TextInput}
           placeholder="Alamat Email"
           placeholderTextColor={"#fff"}
+          value={email}
+          onChangeText={(text) => setEmail(text)}
         />
         <TextInput
           style={[styles.TextInput]}
           secureTextEntry={true}
           placeholder="Masukan Password"
           placeholderTextColor={"#fff"}
+          value={password}
+          onChangeText={(text) => setPassword(text)}
         />
         <TouchableOpacity
           style={[styles.Button, { backgroundColor: "#FFAA06" }]}
-          onPress={() => router.push("/HomePage")}
+          onPress={postData}
         >
           <Text style={{ color: "#fff" }}>Masuk</Text>
         </TouchableOpacity>
