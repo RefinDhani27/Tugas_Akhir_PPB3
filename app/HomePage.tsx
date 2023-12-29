@@ -10,13 +10,25 @@ import SafeArea from "../components/SafeArea";
 import HomePageHeader from "../components/HomePageHeader";
 import { Ionicons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function HomePage() {
+  const getData = async () => {
+    try {
+      const value = await AsyncStorage.getItem("token");
+      if (value !== null) {
+        console.log(value);
+      }
+    } catch (e) {
+      // error reading value
+    }
+  };
+  getData();
   return (
     <View style={{ backgroundColor: "#031126", width: "100%" }}>
       <ScrollView style={{ backgroundColor: "#062148", width: "100%" }}>
         <SafeArea />
-        <HomePageHeader />
+
         <View
           style={{
             flexDirection: "row",
