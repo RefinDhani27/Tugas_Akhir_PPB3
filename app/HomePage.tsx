@@ -13,43 +13,48 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import { useState } from "react";
+import { router } from "expo-router";
 
 export default function HomePage() {
-  const [token, setToken] = useState("");
-  const getToken = async () => {
+  async function getToken() {
     try {
       const value = await AsyncStorage.getItem("token");
       if (value !== null) {
-        setToken(value);
+        console.log(value);
+        return value;
       }
     } catch (e) {
       // error reading value
     }
-  };
+    return null;
+  }
   async function getData() {
     try {
       // Assuming getData is a function that returns the bearer token
-      getToken(); // Call the function to get the token
+      const token = await getToken(); // Call the function to get the token and await the result
       const config = {
         headers: {
           Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json", // You may need to adjust the content type based on your API requirements
+          "Content-Type": "application/json",
         },
       };
-      console.log("Request Config:", config); // Log request configuration
+      console.log("Request Config:", config);
 
       const response = await axios.get(
         "http://192.168.1.73/api/movie/",
         config
       );
-      console.log("ok");
-      return response.data;
+
+      console.log("andree");
+
+      return await response.data[0];
     } catch (error) {
       console.error(error);
     }
     return null;
   }
-  console.log(getData);
+  const data = getData();
+  console.log(data);
 
   return (
     <View style={{ backgroundColor: "#031126", width: "100%" }}>
@@ -174,7 +179,10 @@ export default function HomePage() {
         }}
       >
         <Ionicons name="home" size={24} color={"#fff"} />
-        <Ionicons name="search" size={24} color={"#fff"} />
+        <TouchableOpacity onPress={() => router.push("/SearchPage")}>
+          <Ionicons name="search" size={24} color={"#fff"} />
+        </TouchableOpacity>
+
         <Ionicons name="bookmark" size={24} color={"#fff"} />
       </View>
     </View>
