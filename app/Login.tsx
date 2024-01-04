@@ -48,7 +48,7 @@ export default function Login() {
   const getData = async () => {
     try {
       const value = await AsyncStorage.getItem("token");
-      if (value !== null) {
+      if (value != null && value != undefined) {
         console.log(value);
         router.push("/HomePage");
       }
