@@ -11,40 +11,47 @@ import { Ionicons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import { useState } from "react";
+import { router } from "expo-router";
 
 export default function HomePage() {
-  const [token, setToken] = useState("");
-  const getToken = async () => {
+  async function getToken() {
     try {
       const value = await AsyncStorage.getItem("token");
       if (value !== null) {
-        setToken(value);
+        console.log(value);
+        return value;
       }
     } catch (e) {
       // error reading value
     }
-  };
+    return null;
+  }
   async function getData() {
-    try {
+
       const token = await getToken(); // Assuming getToken is an async function or returns a promise
       const config = {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json", // Adjust the content type as needed
+
         },
       };
-      console.log("Request Config:", config); // Log request configuration
+      console.log("Request Config:", config);
+
 
       const response = await axios.get("http://192.168.1.73/api/movie/", config);
       console.log("ok");
       return response.data; // Return the data from the response
+
     } catch (error) {
       console.error(error);
       return null; // Return null in case of an error
     }
   }
 
-  console.log(getData);
+  const data = getData();
+  console.log(data);
+
 
   return (
     <View style={{ backgroundColor: "#031126", width: "100%" }}>
@@ -138,7 +145,10 @@ export default function HomePage() {
         }}
       >
         <Ionicons name="home" size={24} color={"#fff"} />
-        <Ionicons name="search" size={24} color={"#fff"} />
+        <TouchableOpacity onPress={() => router.push("/SearchPage")}>
+          <Ionicons name="search" size={24} color={"#fff"} />
+        </TouchableOpacity>
+
         <Ionicons name="bookmark" size={24} color={"#fff"} />
       </View>
     </View>
