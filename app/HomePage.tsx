@@ -7,9 +7,7 @@ import {
   StyleSheet,
 } from "react-native";
 import SafeArea from "../components/SafeArea";
-import HomePageHeader from "../components/HomePageHeader";
 import { Ionicons } from "@expo/vector-icons";
-import { TouchableOpacity } from "react-native-gesture-handler";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import { useState } from "react";
@@ -29,38 +27,36 @@ export default function HomePage() {
     return null;
   }
   async function getData() {
-    try {
-      // Assuming getData is a function that returns the bearer token
-      const token = await getToken(); // Call the function to get the token and await the result
+
+      const token = await getToken(); // Assuming getToken is an async function or returns a promise
       const config = {
         headers: {
           Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
+          "Content-Type": "application/json", // Adjust the content type as needed
+
         },
       };
       console.log("Request Config:", config);
 
-      const response = await axios.get(
-        "http://192.168.1.73/api/movie/",
-        config
-      );
 
-      console.log("andree");
+      const response = await axios.get("http://192.168.1.73/api/movie/", config);
+      console.log("ok");
+      return response.data; // Return the data from the response
 
-      return await response.data[0];
     } catch (error) {
       console.error(error);
+      return null; // Return null in case of an error
     }
-    return null;
   }
+
   const data = getData();
   console.log(data);
+
 
   return (
     <View style={{ backgroundColor: "#031126", width: "100%" }}>
       <ScrollView style={{ backgroundColor: "#062148", width: "100%" }}>
         <SafeArea />
-
         <View
           style={{
             flexDirection: "row",
@@ -79,7 +75,7 @@ export default function HomePage() {
                 borderRadius: 2000,
               }}
             />
-            <View style={{ gap: 3 }}>
+            <View style={{ gap: 5 }}>
               <Text style={{ color: "#fff" }}>
                 Halo, <Text style={{ fontWeight: "bold" }}>Kak Zila</Text>
               </Text>
@@ -88,54 +84,24 @@ export default function HomePage() {
               </Text>
             </View>
           </View>
-
           <Ionicons
-            name="notifications-circle-outline"
-            size={40}
+            name="log-out-outline"
+            size={35}
             color={"#fff"}
           />
         </View>
-        <Image
-          source={require("../assets/images/fotoFilmBanyak.png")}
-          style={{ width: "100%" }}
-        />
-        <TouchableOpacity
-          style={{
-            borderColor: "#FFAA06",
-            borderWidth: 1,
-            paddingHorizontal: 5,
-            paddingVertical: 10,
-            alignItems: "center",
-            justifyContent: "center",
-            width: 100,
-            margin: 5,
-            marginVertical: 10,
-            borderRadius: 10,
-          }}
-        >
-          <Text
-            style={{
-              color: "#FFAA06",
-            }}
-          >
-            Lihat Semua
-          </Text>
-        </TouchableOpacity>
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', marginTop: 5 }}>
+          <View style={{ height: 3, width: '100%', backgroundColor: '#304667' }} />
+        </View>
         <View
           style={{
             flexDirection: "row",
-            margin: 10,
+            margin: 20,
             alignItems: "center",
-
             justifyContent: "space-between",
             flexWrap: "wrap",
           }}
         >
-          <Image
-            source={require("../assets/images/posterFilm.png")}
-            style={styles.imageStyle}
-            resizeMode="contain"
-          />
           <Image
             source={require("../assets/images/posterFilm.png")}
             style={styles.imageStyle}
@@ -191,10 +157,10 @@ export default function HomePage() {
 
 const styles = StyleSheet.create({
   imageStyle: {
-    width: Dimensions.get("screen").width / 2.5,
+    width: Dimensions.get("screen").width / 2.4,
     backgroundColor: "red",
-    height: Dimensions.get("screen").width / 2.2 / 0.625,
+    height: Dimensions.get("screen").width / 2.5 / 0.625,
     borderRadius: 20,
-    marginTop: 10,
+    marginTop: 20,
   },
 });
