@@ -45,18 +45,7 @@ export default function Login() {
       console.error("Error posting data:", error);
     }
   };
-  const getData = async () => {
-    try {
-      const value = await AsyncStorage.getItem("token");
-      if (value != null && value != undefined) {
-        console.log(value);
-        router.push("/HomePage");
-      }
-    } catch (e) {
-      // error reading value
-    }
-  };
-  getData();
+
   return (
     <View
       style={{ width: "100%", height: "100%", alignItems: "center", gap: 30 }}
