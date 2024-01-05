@@ -1,7 +1,7 @@
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { useLocalSearchParams } from "expo-router";
 import React, { useState } from "react";
-import SafeArea from "../components/SafeArea";
+import SafeArea from "../../components/SafeArea";
 import {
   View,
   Text,

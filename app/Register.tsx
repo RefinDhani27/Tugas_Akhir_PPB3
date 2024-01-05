@@ -1,10 +1,18 @@
-import React, { useState } from 'react';
-import Checkbox from 'expo-checkbox';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import React, { useState } from "react";
+import Checkbox from "expo-checkbox";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { TouchableOpacity } from "react-native-gesture-handler";
 import { router } from "expo-router";
-import { Text, View, ScrollView, TextInput, Image, StyleSheet, StatusBar } from 'react-native';
-import SafeArea from '../components/SafeArea';
+import {
+  Text,
+  View,
+  ScrollView,
+  TextInput,
+  Image,
+  StyleSheet,
+  StatusBar,
+} from "react-native";
+import SafeArea from "../components/SafeArea";
 
 const logo = require("../assets/images/logo.png");
 
@@ -123,14 +131,18 @@ export default function Register() {
           </Text>
         </View>
         <TouchableOpacity
-          style={[styles.buttonDaftarContainer, !isChecked && styles.buttonDisabled]}
+          style={[
+            styles.buttonDaftarContainer,
+            !isChecked && styles.buttonDisabled,
+          ]}
           disabled={!isChecked}
         >
           <Text style={styles.buttonDaftar}>Daftar</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => router.push("/Login")}>
-          <Text style={{ color: 'gray', marginTop: 10, marginBottom: 55, }}>
-            Sudah memiliki akun? <Text style={styles.highlightedText}>Masuk</Text>
+          <Text style={{ color: "gray", marginTop: 10, marginBottom: 55 }}>
+            Sudah memiliki akun?{" "}
+            <Text style={styles.highlightedText}>Masuk</Text>
           </Text>
         </TouchableOpacity>
       </View>
@@ -216,7 +228,7 @@ const styles = StyleSheet.create({
     color: "#fff",
   },
   buttonDisabled: {
-    backgroundColor: 'grey',
+    backgroundColor: "grey",
     borderRadius: 10,
     paddingVertical: 8,
     paddingHorizontal: 125,
