@@ -1,6 +1,7 @@
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { useLocalSearchParams } from "expo-router";
 import React, { useState } from "react";
+import SafeArea from "../components/SafeArea";
 import {
   View,
   Text,
@@ -8,47 +9,44 @@ import {
   Image,
   TouchableOpacity,
   ScrollView,
+  StatusBar,
 } from "react-native";
-const FlexboxExample = () => {
-  const { id } = useLocalSearchParams();
-  console.log(id);
+
+export default function Detail() {
   return (
     <View style={styles.container}>
-      <Text style={styles.detailFilm}>DETAIL FILM</Text>
+      <SafeArea />
+      <StatusBar backgroundColor={"#041329"} barStyle={"dark-content"} />
+      <View style={styles.containerDetail}>
+        <Text style={styles.detailFilm}>DETAIL FILM</Text>
+      </View>
       <View style={styles.card}>
         <ScrollView>
           <View style={styles.info}>
-            <Text>17+</Text>
             <View>
               <Text style={styles.movieTitle}>INTERSTELLAR</Text>
               <Text style={styles.movieGenre}>Sci-fi, Action</Text>
             </View>
           </View>
           <View style={styles.contentImage}>
-            <View style={styles.gambar1}>
-              {/* <Image source={require("../assets/images/posterFilm.png")} /> */}
+            <View style={styles.containerGambar}>
+              <Image
+                source={require("../assets/images/Film_1.png")}
+                style={{ borderRadius: 20 }}
+              />
             </View>
-            <View style={styles.deskripsi}>
-              <View style={styles.waktu}>
-                <MaterialIcons name="history" />
-                <Text style={styles.metaInfo}>169 Menit</Text>
-              </View>
-              <Text style={styles.Producer}>Producer:</Text>
-              <Text style={styles.ProducerContent}>
-                Nina Jacobson, Francis- Lawrence, Brad Simpson
-              </Text>
-              <Text style={styles.Writer}>Writer:</Text>
-              <Text style={styles.WriterContent}>
-                Nina Jacobson, Francis- Lawrence, Brad Simpson
-              </Text>
-              <View style={styles.buttonGroup}>
-                <TouchableOpacity style={styles.trailerButton}>
-                  <Text style={styles.buttonText}>TRAILER</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.playButton}>
-                  <Text style={styles.buttonText}>PLAY</Text>
-                </TouchableOpacity>
-              </View>
+            <View style={styles.containerButton}>
+              <TouchableOpacity style={styles.trailerButton}>
+                <Text
+                  style={{
+                    color: "white",
+                    fontWeight: "bold",
+                    textAlign: "center",
+                  }}
+                >
+                  TRAILER
+                </Text>
+              </TouchableOpacity>
             </View>
           </View>
           <View style={styles.sipnopsis}>
@@ -70,21 +68,24 @@ const FlexboxExample = () => {
       </View>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
     alignItems: "center",
+    justifyContent: "center",
     backgroundColor: "#062148",
+  },
+  containerDetail: {
+    alignSelf: "flex-start",
   },
   detailFilm: {
     color: "#FFAA06",
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: "bold",
     padding: 20,
-    marginRight: 210,
+    marginRight: 0,
   },
   card: {
     width: "90%",
@@ -95,13 +96,9 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   info: {
-    margin: 20,
+    margin: 10,
     flexDirection: "row",
     gap: 10,
-  },
-  icon1: {
-    width: 40,
-    height: 40,
   },
   movieTitle: {
     color: "white",
@@ -113,77 +110,36 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   contentImage: {
-    flexDirection: "row",
-    width: "100%",
     padding: 10,
+  },
+  containerGambar: {
+    width: "100%",
     justifyContent: "center",
+    alignItems: "center",
   },
-  gambar1: {
-    width: "45%",
-    height: 200,
-  },
-  deskripsi: {
-    paddingLeft: 60,
-    paddingTop: 10,
-    width: "55%",
-    height: "auto",
-  },
-  waktu: {
-    flexDirection: "row",
-    gap: 10,
-  },
-  metaInfo: {
-    color: "#fff",
-    marginBottom: 20,
-    fontWeight: "bold",
-  },
-  Producer: {
-    color: "#fff",
-    fontWeight: "bold",
-    marginRight: 10,
-  },
-  ProducerContent: {
-    color: "#999",
-    marginBottom: 10,
-  },
-  Writer: {
-    color: "#fff",
-    fontWeight: "bold",
-    marginRight: 10,
-  },
-  WriterContent: {
-    color: "#999",
-    marginBottom: 10,
-  },
-  buttonGroup: {
-    gap: 10,
+  containerButton: {
     justifyContent: "center",
     alignItems: "center",
   },
   trailerButton: {
-    backgroundColor: "#FFAA06",
-    padding: 10,
-    borderRadius: 10,
-    width: 80,
-    marginTop: 25,
-  },
-  playButton: {
-    padding: 10,
+    backgroundColor: "#031126",
     borderColor: "#FFAA06",
-    borderWidth: 1,
+    borderWidth: 2,
+    padding: 10,
     borderRadius: 10,
-    width: 80,
+    width: 100,
+    marginTop: 25,
   },
   buttonText: {
     color: "white",
     textAlign: "center",
   },
   sipnopsis: {
-    padding: 15,
+    padding: 10,
   },
   Cerita: {
     color: "#FFAA06",
-    marginTop: 30,
+    marginTop: 10,
     marginRight: 10,
     fontSize: 18,
     fontWeight: "bold",
@@ -195,7 +151,7 @@ const styles = StyleSheet.create({
   },
   koleksi: {
     color: "#FFAA06",
-    marginTop: 30,
+    marginTop: 20,
     marginRight: 10,
     fontSize: 18,
     fontWeight: "bold",
@@ -217,5 +173,3 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
 });
-
-export default FlexboxExample;

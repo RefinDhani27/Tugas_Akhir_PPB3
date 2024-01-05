@@ -3,6 +3,8 @@ import { StyleSheet, TextInput, View, Text } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import SafeArea from "../components/SafeArea";
+import { ScrollView } from "react-native-gesture-handler";
 
 export default function SearchPage() {
   const [movies, setMovies] = useState([]);
@@ -56,31 +58,40 @@ export default function SearchPage() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.searchSection}>
-        <FontAwesome
-          style={styles.searchIcon}
-          name="search"
-          size={25}
-          color="white"
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Cari Film Pilihanmu"
-          placeholderTextColor={"white"}
-          onChangeText={(text) => setSearch(text)}
-          value={search}
-        />
-      </View>
-      <View>
-        {movies != undefined &&
-          movies.map((movie) => (
-            <View key={movie.id}>
-              <Text>{movie.name}</Text>
-              <Text>{movie.overview}</Text>
-            </View>
-          ))}
-      </View>
+      <ScrollView>
+        <SafeArea />
+        <View style={styles.searchSection}>
+          <FontAwesome
+            style={styles.searchIcon}
+            name="search"
+            size={25}
+            color="white"
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Cari Film Pilihanmu"
+            placeholderTextColor={"white"}
+            onChangeText={(text) => setSearch(text)}
+            value={search}
+          />
+        </View>
+        <View>
+          {movies != undefined &&
+            movies.map((movie) => (
+          <View>
+            {movie.overview != null && movie.overview != ''  &&
+              <View style={styles.card}>
+                <View key={movie.id} style={styles.detailCard}>
+                  <Text style={{fontSize: 22, fontWeight: "bold", color: 'white'}}>{movie.title || movie.name}</Text>
+                  <Text style={{}}>{movie.overview}</Text>
+                </View>
+              </View>}
+              </View>
+            ))}
+        </View>
+      </ScrollView>
     </View>
+
   );
 }
 
@@ -89,13 +100,30 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#062148",
   },
+  card: {
+    backgroundColor: '#596B85',
+    borderRadius: 8,
+    overflow: 'hidden',
+    margin: 10,
+    padding: 15,
+    elevation: 3,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowRadius: 6,
+    shadowOpacity: 0.3,
+  },
+  detailCard: {
+    color: 'white',
+  },
   searchSection: {
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#FFAA06",
-    margin: 10,
-    borderRadius: 18,
+    margin: 15,
+    borderRadius: 10,
     paddingLeft: 10,
   },
   searchIcon: {
