@@ -43,7 +43,7 @@ export default function Bookmark() {
       };
 
       const response = await axios.get(
-        `http://192.168.1.73/api/bookmark`,
+        `http://192.168.136.108/api/bookmark`,
         config
       );
       setMovies(response.data);
@@ -67,7 +67,7 @@ export default function Bookmark() {
       };
 
       const response = await axios.post(
-        "http://192.168.1.73/api/bookmark/delete",
+        "http://192.168.136.108/api/bookmark/delete",
         data,
         config
       ); // Replace with your API endpoint
@@ -108,17 +108,17 @@ export default function Bookmark() {
               <View style={styles.cardContainer}>
                 <Image
                   source={{
-                    uri: "http://192.168.1.73/api/movie/image/" + film.movie_id,
+                    uri: "http://192.168.136.108/api/movie/image/" + film.movie_id,
                   }}
                   style={styles.image}
                 />
                 <View style={styles.details}>
                   <Text style={styles.textJenis}>{film.genre}</Text>
                   <View style={styles.buttonContainer}>
-                    <TouchableOpacity
+                    <TouchableOpacity style={{backgroundColor: '#FFAA06', borderRadius: 10, padding: 10}}
                       onPress={() => router.push("/Detail/" + film.movie_id)}
                     >
-                      <Text>Detail Movie</Text>
+                      <Text style={{color: 'white'}}>Detail Movie</Text>
                     </TouchableOpacity>
                     <FontAwesome name="bookmark" size={24} color="white" />
                     <TouchableOpacity

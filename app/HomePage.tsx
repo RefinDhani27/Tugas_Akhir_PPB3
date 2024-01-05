@@ -46,7 +46,7 @@ export default function HomePage() {
       console.log("Request Config:", config);
 
       const response = await axios.get(
-        "http://192.168.1.73/api/movie/image/453395",
+        "http://192.168.136.108/api/movie/image/453395",
         config
       );
 
@@ -127,69 +127,69 @@ export default function HomePage() {
           <TouchableOpacity onPress={() => router.push("/Detail/453395")}>
             <Image
               style={styles.imageStyle}
-              source={{ uri: "http://192.168.1.73/api/movie/image/453395" }}
+              source={{ uri: "http://192.168.136.108/api/movie/image/453395" }}
               resizeMode="contain"
             ></Image>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => router.push("/Detail/726209")}>
           <Image
             style={styles.imageStyle}
-            source={{ uri: "http://192.168.1.73/api/movie/image/726209" }}
+            source={{ uri: "http://192.168.136.108/api/movie/image/726209" }}
             resizeMode="contain"
           ></Image>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => router.push("/Detail/572802")}>
           <Image
             style={styles.imageStyle}
-            source={{ uri: "http://192.168.1.73/api/movie/image/572802" }}
+            source={{ uri: "http://192.168.136.108/api/movie/image/572802" }}
             resizeMode="contain"
           ></Image>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => router.push("/Detail/787699")}>
           <Image
             style={styles.imageStyle}
-            source={{ uri: "http://192.168.1.73/api/movie/image/787699" }}
+            source={{ uri: "http://192.168.136.108/api/movie/image/787699" }}
             resizeMode="contain"
           ></Image>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => router.push("/Detail/872585")}>
           <Image
-            source={{ uri: "http://192.168.1.73/api/movie/image/872585" }}
+            source={{ uri: "http://192.168.136.108/api/movie/image/872585" }}
             style={styles.imageStyle}
             resizeMode="contain"
           />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => router.push("/Detail/157336")}>
             <Image
-              source={{ uri: "http://192.168.1.73/api/movie/image/157336" }}
+              source={{ uri: "http://192.168.136.108/api/movie/image/157336" }}
               style={styles.imageStyle}
               resizeMode="contain"
             />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => router.push("/Detail/155")}>
             <Image
-              source={{ uri: "http://192.168.1.73/api/movie/image/155" }}
+              source={{ uri: "http://192.168.136.108/api/movie/image/155" }}
               style={styles.imageStyle}
               resizeMode="contain"
             />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => router.push("/Detail/361743")}>
             <Image
-              source={{ uri: "http://192.168.1.73/api/movie/image/361743" }}
+              source={{ uri: "http://192.168.136.108/api/movie/image/361743" }}
               style={styles.imageStyle}
               resizeMode="contain"
             />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => router.push("/Detail/603692")}>
             <Image
-              source={{ uri: "http://192.168.1.73/api/movie/image/603692" }}
+              source={{ uri: "http://192.168.136.108/api/movie/image/603692" }}
               style={styles.imageStyle}
               resizeMode="contain"
             />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => router.push("/Detail/475557")}>
             <Image
-              source={{ uri: "http://192.168.1.73/api/movie/image/475557" }}
+              source={{ uri: "http://192.168.136.108/api/movie/image/475557" }}
               style={styles.imageStyle}
               resizeMode="contain"
             />

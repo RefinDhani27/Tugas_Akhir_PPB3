@@ -36,7 +36,7 @@ export default function SearchPage() {
       };
 
       const response = await axios.get(
-        `http://192.168.1.73/api/movie/${search}`,
+        `http://192.168.136.108/api/movie/${search}`,
         config
       );
       setMovies(response.data.results);
