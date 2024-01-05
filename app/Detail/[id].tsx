@@ -11,11 +11,61 @@ import {
   ScrollView,
   StatusBar,
 } from "react-native";
+import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Detail() {
+
+  const { id } = useLocalSearchParams<{ id: string }>();
+  console.log(id);
+
+  const [movies, setMovies] = useState([]);
+
+  async function getToken() {
+    try {
+      const value = await AsyncStorage.getItem("token");
+      if (value !== null) {
+        console.log(value);
+        return value;
+      }
+    } catch (e) {
+      // handle error reading value
+    }
+    return null;
+  }
+
+  const getData = async () => {
+    try {
+      const token = await getToken();
+
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      };
+
+      const response = await axios.get(
+        `http://192.168.1.73/api/movie/detail/${id}`,
+        config
+      );
+      console.log(response.data);
+      setMovies(response.data);
+
+      console.log(response.data.results[0].overview);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+
+  };
+
+  getData();
   return (
+
     <View style={styles.container}>
+
       <SafeArea />
+
       <StatusBar backgroundColor={"#041329"} barStyle={"dark-content"} />
       <View style={styles.containerDetail}>
         <Text style={styles.detailFilm}>DETAIL FILM</Text>
@@ -24,16 +74,19 @@ export default function Detail() {
         <ScrollView>
           <View style={styles.info}>
             <View>
-              <Text style={styles.movieTitle}>INTERSTELLAR</Text>
-              <Text style={styles.movieGenre}>Sci-fi, Action</Text>
+              <Text style={styles.movieTitle}>{movies.title}</Text>
+              <Text style={styles.movieGenre}>{movies.genres != undefined && movies.genres.map((movie) => (
+                movie.name + ' '
+              ))}</Text>
             </View>
           </View>
           <View style={styles.contentImage}>
             <View style={styles.containerGambar}>
               <Image
-                source={require("../assets/images/Film_1.png")}
+                source={{ uri: "http://192.168.1.73/api/movie/image/726209" }}
                 style={{ borderRadius: 20 }}
               />
+
             </View>
             <View style={styles.containerButton}>
               <TouchableOpacity style={styles.trailerButton}>
@@ -52,9 +105,7 @@ export default function Detail() {
           <View style={styles.sipnopsis}>
             <Text style={styles.Cerita}>Sipnopsis Cerita</Text>
             <Text style={styles.isiCerita}>
-              When Earth becomes uninhabitable in the future, a farmer and
-              ex-NASA pilot, Joseph Cooper, is tasked to pilot a spacecraft,
-              along with a team of researchers, to find a new planet for humans.
+                  {movies.overview}
             </Text>
             <Text style={styles.koleksi}>Jadikan Koleksi</Text>
             <View style={styles.favorit}>
@@ -64,6 +115,12 @@ export default function Detail() {
               <Text style={styles.tambahkan}>Tambahkan Ke Koleksi</Text>
             </View>
           </View>
+          <Image
+            source={{ uri: "http://192.168.1.73/api/movie/image/726209" }}
+            style={{ borderRadius: 20 }}
+            onError={(e) => console.log('Error loading image:', e)}
+          />
+
         </ScrollView>
       </View>
     </View>
@@ -113,9 +170,8 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   containerGambar: {
-    width: "100%",
-    justifyContent: "center",
-    alignItems: "center",
+    backgroundColor: 'red',
+
   },
   containerButton: {
     justifyContent: "center",

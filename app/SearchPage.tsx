@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, TextInput, View, Text } from "react-native";
+import { StyleSheet, TextInput, View, Text, TouchableOpacity } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import SafeArea from "../components/SafeArea";
 import { ScrollView } from "react-native-gesture-handler";
+import { router } from "expo-router";
 
 export default function SearchPage() {
   const [movies, setMovies] = useState([]);
@@ -80,12 +81,14 @@ export default function SearchPage() {
             movies.map((movie) => (
           <View>
             {movie.overview != null && movie.overview != ''  &&
+              <TouchableOpacity onPress={()=>router.push("/Detail/" + movie.id)}>
               <View style={styles.card}>
                 <View key={movie.id} style={styles.detailCard}>
                   <Text style={{fontSize: 22, fontWeight: "bold", color: 'white'}}>{movie.title || movie.name}</Text>
-                  <Text style={{}}>{movie.overview}</Text>
+                  <Text style={{color: 'white', marginTop: 10}}>{movie.overview}</Text>
                 </View>
-              </View>}
+              </View>
+              </TouchableOpacity>}
               </View>
             ))}
         </View>
@@ -101,7 +104,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#062148",
   },
   card: {
-    backgroundColor: '#596B85',
+    backgroundColor: '#FFAA06',
     borderRadius: 8,
     overflow: 'hidden',
     margin: 10,

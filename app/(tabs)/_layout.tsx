@@ -14,20 +14,16 @@ export default function TabLayout() {
 
   return (
     <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
-      }}
     >
       <Tabs.Screen
         name="index"
         options={{
           title: "HomeScreen",
           headerShown: false,
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-        screenOptions={{
-            tabBarStyle: { display: 'none' },
+          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color}  /> 
         }}
-    >
-    </Tabs>
+          /> 
+  
+          </Tabs>
   );
 }

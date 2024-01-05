@@ -34,8 +34,9 @@ const getData = async () => {
     // error reading value
   }
 };
-getData();
+
 export default function TabOneScreen() {
+  getData();
   const [activeIndex, setActiveIndex] = useState(0);
   const carouselRef = useRef<ScrollView>(null);
 
