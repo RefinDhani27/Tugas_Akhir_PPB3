@@ -5,14 +5,14 @@ import {
   Dimensions,
   ScrollView,
   StyleSheet,
-  TouchableOpacity
+  TouchableOpacity,
 } from "react-native";
 import SafeArea from "../components/SafeArea";
 import { Ionicons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import { useState } from "react";
-import { router } from "expo-router";
+import { router, Link } from "expo-router";
 
 export default function HomePage() {
   async function getToken() {
@@ -28,22 +28,22 @@ export default function HomePage() {
     return null;
   }
   async function getData() {
-      try {
+    try {
       const token = await getToken(); // Assuming getToken is an async function or returns a promise
       const config = {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json", // Adjust the content type as needed
-
         },
       };
       console.log("Request Config:", config);
 
-
-      const response = await axios.get("http://192.168.1.73/api/movie/", config);
+      const response = await axios.get(
+        "http://192.168.1.73/api/movie/",
+        config
+      );
       console.log("ok");
       return response.data; // Return the data from the response
-
     } catch (error) {
       console.error(error);
       return null; // Return null in case of an error
@@ -52,7 +52,6 @@ export default function HomePage() {
 
   const data = getData();
   console.log(data);
-
 
   return (
     <View style={{ backgroundColor: "#031126", width: "100%" }}>
@@ -85,14 +84,19 @@ export default function HomePage() {
               </Text>
             </View>
           </View>
-          <Ionicons
-            name="log-out-outline"
-            size={35}
-            color={"#fff"}
-          />
+          <Ionicons name="log-out-outline" size={35} color={"#fff"} />
         </View>
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', marginTop: 5 }}>
-          <View style={{ height: 3, width: '100%', backgroundColor: '#304667' }} />
+        <View
+          style={{
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
+            marginTop: 5,
+          }}
+        >
+          <View
+            style={{ height: 3, width: "100%", backgroundColor: "#304667" }}
+          />
         </View>
         <View
           style={{
@@ -103,11 +107,19 @@ export default function HomePage() {
             flexWrap: "wrap",
           }}
         >
-          <Image
-            source={require("../assets/images/posterFilm.png")}
+          <Link
             style={styles.imageStyle}
-            resizeMode="contain"
-          />
+            href={{
+              pathname: "/Detail",
+              params: { id: "bacon" },
+            }}
+          >
+            <Image
+              style={{ width: "100%", height: "100%" }}
+              source={require("../assets/images/posterFilm.png")}
+              resizeMode="contain"
+            />
+          </Link>
           <Image
             source={require("../assets/images/posterFilm.png")}
             style={styles.imageStyle}
@@ -149,8 +161,9 @@ export default function HomePage() {
         <TouchableOpacity onPress={() => router.push("/SearchPage")}>
           <Ionicons name="search" size={24} color={"#fff"} />
         </TouchableOpacity>
-
-        <Ionicons name="bookmark" size={24} color={"#fff"} />
+        <TouchableOpacity onPress={() => router.push("/Bookmark")}>
+          <Ionicons name="bookmark" size={24} color={"#fff"} />
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -159,7 +172,7 @@ export default function HomePage() {
 const styles = StyleSheet.create({
   imageStyle: {
     width: Dimensions.get("screen").width / 2.4,
-    backgroundColor: "red",
+
     height: Dimensions.get("screen").width / 2.5 / 0.625,
     borderRadius: 20,
     marginTop: 20,

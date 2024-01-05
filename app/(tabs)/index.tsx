@@ -1,3 +1,4 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { router } from "expo-router";
 import React, { useState, useRef } from "react";
 import {
@@ -22,7 +23,18 @@ const carouselImages = [
 ];
 
 const { width } = Dimensions.get("window");
-
+const getData = async () => {
+  try {
+    const value = await AsyncStorage.getItem("token");
+    if (value != null && value != undefined) {
+      console.log(value);
+      router.push("/HomePage");
+    }
+  } catch (e) {
+    // error reading value
+  }
+};
+getData();
 export default function TabOneScreen() {
   const [activeIndex, setActiveIndex] = useState(0);
   const carouselRef = useRef<ScrollView>(null);
