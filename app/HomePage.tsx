@@ -5,6 +5,7 @@ import {
   Dimensions,
   ScrollView,
   StyleSheet,
+  TouchableOpacity
 } from "react-native";
 import SafeArea from "../components/SafeArea";
 import { Ionicons } from "@expo/vector-icons";
@@ -27,7 +28,7 @@ export default function HomePage() {
     return null;
   }
   async function getData() {
-
+      try {
       const token = await getToken(); // Assuming getToken is an async function or returns a promise
       const config = {
         headers: {

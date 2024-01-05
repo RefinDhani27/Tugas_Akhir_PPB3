@@ -7,13 +7,13 @@ import {
   StatusBar,
   TouchableOpacity,
 } from "react-native";
-import BackgroundLogin from "../components/BackgroundLogin";
 import SafeArea from "../components/SafeArea";
 import { router } from "expo-router";
-import HomePage from "./HomePage";
 import axios from "axios";
 import { useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+
+const logo = require('../assets/images/logo.png');
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -58,54 +58,39 @@ export default function Login() {
   };
   getData();
   return (
-    <View
-      style={{ width: "100%", height: "100%", alignItems: "center", gap: 30 }}
-    >
+    <View style={styles.container}>
       <SafeArea />
       <StatusBar backgroundColor={"#041329"} barStyle={"dark-content"} />
-      <BackgroundLogin />
-      <View style={{ height: "10%" }} />
-      <Image
-        source={require("../assets/images/logo.png")}
-        style={{ alignSelf: "center" }}
+      <View style={styles.biruAtas}>
+        <Image source={logo} style={{ height: 40, marginTop: 130 }} resizeMode="contain" />
+        <Text style={styles.text}>Masukkan akun untuk melanjutkan ke {'\n'}Rekom Movie</Text>
+      </View>
+      <TextInput
+        style={styles.input}
+        placeholder="Masukkan Email"
+        placeholderTextColor="gray"
+        value={email}
+        onChangeText={(text) => setEmail(text)}
       />
-      <Text style={{ color: "#fff", width: "70%", textAlign: "center" }}>
-        Masukkan akun untuk melanjutkan ke Recom Movie
-      </Text>
-      <View
-        style={{
-          width: "100%",
-          alignItems: "center",
-          gap: 15,
-        }}
+      <TextInput
+        style={[styles.input]}
+        secureTextEntry={true}
+        placeholder="Masukan Password"
+        placeholderTextColor="gray"
+        value={password}
+        onChangeText={(text) => setPassword(text)}
+      />
+      <TouchableOpacity
+        style={[styles.buttonMasukContainer, { backgroundColor: "#FFAA06" }]}
+        onPress={postData}
       >
-        <TextInput
-          style={styles.TextInput}
-          placeholder="Alamat Email"
-          placeholderTextColor={"#fff"}
-          value={email}
-          onChangeText={(text) => setEmail(text)}
-        />
-        <TextInput
-          style={[styles.TextInput]}
-          secureTextEntry={true}
-          placeholder="Masukan Password"
-          placeholderTextColor={"#fff"}
-          value={password}
-          onChangeText={(text) => setPassword(text)}
-        />
-        <TouchableOpacity
-          style={[styles.Button, { backgroundColor: "#FFAA06" }]}
-          onPress={postData}
-        >
-          <Text style={{ color: "#fff" }}>Masuk</Text>
+        <Text style={styles.buttonMasuk}>Masuk</Text>
+      </TouchableOpacity>
+      <View style={{ flexDirection: "row", gap: 5, marginTop: 10}}>
+        <Text style={styles.Text}>Belum memiliki akun?</Text>
+        <TouchableOpacity onPress={() => router.push("/Detail")}>
+          <Text style={styles.link}>Daftar</Text>
         </TouchableOpacity>
-        <View style={{ flexDirection: "row", gap: 5 }}>
-          <Text style={styles.Text}>Belum memiliki akun?</Text>
-          <TouchableOpacity onPress={() => router.push("/Register")}>
-            <Text style={styles.link}>Daftar</Text>
-          </TouchableOpacity>
-        </View>
       </View>
       <View style={{ flex: 1 }}></View>
       <View style={{ width: "85%" }}>
@@ -122,22 +107,49 @@ export default function Login() {
   );
 }
 const styles = StyleSheet.create({
-  TextInput: {
-    height: 41,
-    width: "80%",
-    backgroundColor: "#304665",
-    borderRadius: 10,
-    color: "#fff",
-    paddingHorizontal: 10,
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#062148',
   },
-  Button: {
-    height: 41,
-    width: "80%",
-    backgroundColor: "#fff",
+  biruAtas: {
+    height: 280,
+    width: 420,
+    backgroundColor: "#0C3358",
+    alignItems: 'center',
+    borderBottomLeftRadius: 2000,
+    borderBottomRightRadius: 2000,
+    marginBottom: 20
+  },
+  text: {
+    color: 'white',
+    marginTop: 40,
+    marginBottom: 50,
+    textAlign: 'center'
+  },
+  input: {
+    color: 'white',
+    height: 45,
+    borderColor: '#304665',
+    borderWidth: 1,
     borderRadius: 10,
-    paddingHorizontal: 10,
-    justifyContent: "center",
-    alignItems: "center",
+    paddingLeft: 15,
+    fontSize: 17,
+    width: '85%',
+    marginBottom: 15,
+    marginHorizontal: 10,
+    backgroundColor: '#304665'
+  },
+  buttonMasukContainer: {
+    backgroundColor: "#FCA806",
+    borderRadius: 10,
+    paddingVertical: 8,
+    paddingHorizontal: 125
+  },
+  buttonMasuk: {
+    fontSize: 18,
+    color: "#fff",
   },
   Text: {
     color: "#898989",

@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
   NativeSyntheticEvent,
   NativeScrollEvent,
+  StatusBar
 } from "react-native";
 
 const logo = require("../../assets/images/logo.png");
@@ -35,8 +36,8 @@ export default function TabOneScreen() {
   };
 
   return (
-    
     <View style={styles.container}>
+      <StatusBar backgroundColor={"#041329"} barStyle={"dark-content"} />
       <View style={styles.content}>
         <View style={styles.carouselContent}>
           <ScrollView
