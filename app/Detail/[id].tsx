@@ -16,9 +16,42 @@ import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Detail() {
-
   const { id } = useLocalSearchParams<{ id: string }>();
+  const [isFavourite, setFavourite] = useState(false);
   console.log(id);
+
+  const postData = async () => {
+    try {
+      const data = {
+        movieId: id,
+      };
+      const token = await getToken();
+      console.log(token); // Assuming getToken is an async function or returns a promise
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json", // Adjust the content type as needed
+        },
+      };
+      if (isFavourite == false) {
+        const response = await axios.post(
+          "http://192.168.1.73/api/bookmark/add",
+          data,
+          config
+        ); // Replace with your API endpoint
+        console.log(response.data);
+      } else {
+        const response = await axios.post(
+          "http://192.168.1.73/api/bookmark/delete",
+          data,
+          config
+        ); // Replace with your API endpoint
+        console.log(response.data);
+      }
+    } catch (error) {
+      console.error("Error posting data:", error);
+    }
+  };
 
   const [movies, setMovies] = useState([]);
 
@@ -57,12 +90,10 @@ export default function Detail() {
     } catch (error) {
       console.error("Error fetching data:", error);
     }
-
   };
 
   getData();
   return (
-
     <View style={styles.container}>
       <SafeArea />
       <StatusBar backgroundColor={"#041329"} barStyle={"dark-content"} />
@@ -74,19 +105,68 @@ export default function Detail() {
           <View style={styles.info}>
             <View>
               <Text style={styles.movieTitle}>{movies.title}</Text>
-              <Text style={styles.movieGenre}>{movies.genres != undefined && movies.genres.map((movie) => (
-                movie.name + ' '
-              ))}</Text>
+              <Text style={styles.movieGenre}>
+                {movies.genres != undefined &&
+                  movies.genres.map((movie) => movie.name + " ")}
+              </Text>
             </View>
           </View>
           <View style={styles.contentImage}>
             <View style={styles.containerGambar}>
               <Image
+
                 source={{ uri: "http://192.168.1.73/api/movie/image/" + id }}
                 style={styles.imageStyle}
                 resizeMode="contain"
               />
           </View>
+
+               
+            <View style={styles.containerButton}>
+              <TouchableOpacity style={styles.trailerButton}>
+                <Text
+                  style={{
+                    color: "white",
+                    fontWeight: "bold",
+                    textAlign: "center",
+                  }}
+                >
+                  TRAILER
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+          <View style={styles.sipnopsis}>
+            <Text style={styles.Cerita}>Sipnopsis Cerita</Text>
+            <Text style={styles.isiCerita}>{movies.overview}</Text>
+            <Text style={styles.koleksi}>Jadikan Koleksi</Text>
+            <View style={styles.favorit}>
+              <TouchableOpacity
+                onPress={() => {
+                  setFavourite(!isFavourite);
+                  postData();
+                }}
+              >
+                {isFavourite ? (
+                  <Ionicons
+                    color={"#FFAA06"}
+                    size={24}
+                    name="bookmark"
+                  ></Ionicons>
+                ) : (
+                  <Ionicons color={"#FFF"} size={24} name="bookmark"></Ionicons>
+                )}
+              </TouchableOpacity>
+              <Text style={styles.tambahkan}>Tambahkan Ke Koleksi</Text>
+            </View>
+          </View>
+          <Image
+            source={{ uri: "http://192.168.1.73/api/movie/image/726209" }}
+            style={{ borderRadius: 20 }}
+            onError={(e) => console.log("Error loading image:", e)}
+          />
+        </ScrollView>
+
       </View>
       <View style={styles.sipnopsis}>
         <Text style={styles.Cerita}>Sipnopsis Cerita</Text>
@@ -150,8 +230,10 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   containerGambar: {
+
     justifyContent: "center",
     alignItems: "center",
+
   },
   containerButton: {
     justifyContent: "center",
