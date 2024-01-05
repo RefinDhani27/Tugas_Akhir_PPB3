@@ -48,7 +48,7 @@ export default function HomePage() {
         "http://192.168.1.73/api/movie/image/453395",
         config
       );
-      console.log(response.data);
+
       setImageData(response.data);
       return response;
     } catch (error) {
@@ -110,47 +110,84 @@ export default function HomePage() {
             style={{ height: 3, width: "100%", backgroundColor: "#304667" }}
           />
         </View>
+        <Text style={{color: 'white', fontWeight: 'bold', fontSize: 22, padding: 15}}>Top 10 Film Rekomendasi</Text>
         <View
           style={{
             flexDirection: "row",
-            margin: 20,
+            marginLeft: 20,
+            marginRight: 20,
+            marginTop: -15,
             alignItems: "center",
             justifyContent: "space-between",
             flexWrap: "wrap",
           }}
         >
+          <TouchableOpacity onPress={() => router.push("/Detail/453395")}>
+            <Image
+              style={styles.imageStyle}
+              source={{ uri: "http://192.168.1.73/api/movie/image/453395" }}
+              resizeMode="contain"
+            ></Image>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => router.push("/Detail/726209")}>
           <Image
             style={styles.imageStyle}
-            source={{ uri: "http://192.168.1.73/api/movie/image/453395" }}
+            source={{ uri: "http://192.168.1.73/api/movie/image/726209" }}
             resizeMode="contain"
           ></Image>
-
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => router.push("/Detail/572802")}>
           <Image
             style={styles.imageStyle}
-            source={require("../assets/images/posterFilm.png")}
+            source={{ uri: "http://192.168.1.73/api/movie/image/572802" }}
             resizeMode="contain"
           ></Image>
-
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => router.push("/Detail/787699")}>
           <Image
             style={styles.imageStyle}
-            source={require("../assets/images/posterFilm.png")}
+            source={{ uri: "http://192.168.1.73/api/movie/image/787699" }}
             resizeMode="contain"
           ></Image>
-
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => router.push("/Detail/872585")}>
           <Image
-            style={styles.imageStyle}
-            source={require("../assets/images/posterFilm.png")}
-            resizeMode="contain"
-          ></Image>
-
-          <Image
-            source={require("../assets/images/posterFilm.png")}
+            source={{ uri: "http://192.168.1.73/api/movie/image/872585" }}
             style={styles.imageStyle}
             resizeMode="contain"
           />
-          <TouchableOpacity onPress={() => router.push("/Detail/4456")}>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => router.push("/Detail/157336")}>
             <Image
-              source={require("../assets/images/posterFilm.png")}
+              source={{ uri: "http://192.168.1.73/api/movie/image/157336" }}
+              style={styles.imageStyle}
+              resizeMode="contain"
+            />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => router.push("/Detail/155")}>
+            <Image
+              source={{ uri: "http://192.168.1.73/api/movie/image/155" }}
+              style={styles.imageStyle}
+              resizeMode="contain"
+            />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => router.push("/Detail/361743")}>
+            <Image
+              source={{ uri: "http://192.168.1.73/api/movie/image/361743" }}
+              style={styles.imageStyle}
+              resizeMode="contain"
+            />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => router.push("/Detail/603692")}>
+            <Image
+              source={{ uri: "http://192.168.1.73/api/movie/image/603692" }}
+              style={styles.imageStyle}
+              resizeMode="contain"
+            />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => router.push("/Detail/475557")}>
+            <Image
+              source={{ uri: "http://192.168.1.73/api/movie/image/475557" }}
               style={styles.imageStyle}
               resizeMode="contain"
             />
