@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import {
   StyleSheet,
@@ -12,6 +13,7 @@ import { FontAwesome } from "@expo/vector-icons";
 import { router } from "expo-router";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+
 
 export default function Bookmark() {
   const [movies, setMovies] = useState([]);
@@ -75,6 +77,7 @@ export default function Bookmark() {
     }
   };
 
+
   getData();
   const films = [
     {
@@ -126,6 +129,7 @@ export default function Bookmark() {
                       <FontAwesome name="trash-o" size={24} color="white" />
                     </TouchableOpacity>
                   </View>
+
                 </View>
               </View>
             </View>

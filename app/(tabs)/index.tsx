@@ -18,8 +18,8 @@ const logo = require("../../assets/images/logo.png");
 
 const carouselImages = [
   require("../../assets/images/gambar_1.png"),
-  require("../../assets/images/gambar_1.png"),
-  require("../../assets/images/gambar_1.png"),
+  require("../../assets/images/gambar_2.png"),
+  require("../../assets/images/gambar_3.png"),
 ];
 
 const { width } = Dimensions.get("window");

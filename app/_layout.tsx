@@ -53,9 +53,11 @@ function RootLayoutNav() {
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="Detail/[id]" options={{ headerShown: false }} />
         <Stack.Screen name="Login" options={{ headerShown: false }} />
         <Stack.Screen name="HomePage" options={{ headerShown: false }} />
         <Stack.Screen name="SearchPage" options={{ headerShown: false }} />
+        <Stack.Screen name="Bookmark" options={{ headerShown: false }} />
         <Stack.Screen name="Register" options={{ headerShown: false }} />
 
         <Stack.Screen name="modal" options={{ presentation: "modal" }} />
