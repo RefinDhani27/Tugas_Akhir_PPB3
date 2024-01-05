@@ -35,14 +35,14 @@ export default function Detail() {
       };
       if (isFavourite == false) {
         const response = await axios.post(
-          "http://192.168.1.73/api/bookmark/add",
+          "http://192.168.136.108/api/bookmark/add",
           data,
           config
         ); // Replace with your API endpoint
         console.log(response.data);
       } else {
         const response = await axios.post(
-          "http://192.168.1.73/api/bookmark/delete",
+          "http://192.168.136.108/api/bookmark/delete",
           data,
           config
         ); // Replace with your API endpoint
@@ -80,7 +80,7 @@ export default function Detail() {
       };
 
       const response = await axios.get(
-        `http://192.168.1.73/api/movie/detail/${id}`,
+        `http://192.168.136.108/api/movie/detail/${id}`,
         config
       );
       console.log(response.data);
@@ -115,26 +115,11 @@ export default function Detail() {
             <View style={styles.containerGambar}>
               <Image
 
-                source={{ uri: "http://192.168.1.73/api/movie/image/" + id }}
+                source={{ uri: "http://192.168.136.108/api/movie/image/" + id }}
                 style={styles.imageStyle}
                 resizeMode="contain"
               />
           </View>
-
-               
-            <View style={styles.containerButton}>
-              <TouchableOpacity style={styles.trailerButton}>
-                <Text
-                  style={{
-                    color: "white",
-                    fontWeight: "bold",
-                    textAlign: "center",
-                  }}
-                >
-                  TRAILER
-                </Text>
-              </TouchableOpacity>
-            </View>
           </View>
           <View style={styles.sipnopsis}>
             <Text style={styles.Cerita}>Sipnopsis Cerita</Text>
@@ -161,28 +146,13 @@ export default function Detail() {
             </View>
           </View>
           <Image
-            source={{ uri: "http://192.168.1.73/api/movie/image/726209" }}
+            source={{ uri: "http://192.168.136.108/api/movie/image/726209" }}
             style={{ borderRadius: 20 }}
             onError={(e) => console.log("Error loading image:", e)}
           />
         </ScrollView>
 
       </View>
-      <View style={styles.sipnopsis}>
-        <Text style={styles.Cerita}>Sipnopsis Cerita</Text>
-        <Text style={styles.isiCerita}>
-          {movies.overview}
-        </Text>
-        <Text style={styles.koleksi}>Jadikan Koleksi</Text>
-        <View style={styles.favorit}>
-          <TouchableOpacity onPress={() => null}>
-            <Ionicons name="bookmark"></Ionicons>
-          </TouchableOpacity>
-          <Text style={styles.tambahkan}>Tambahkan Ke Koleksi</Text>
-        </View>
-      </View>
-    </ScrollView>
-      </View >
     </View >
   );
 }
