@@ -1,18 +1,10 @@
-import React, { useState } from "react";
-import Checkbox from "expo-checkbox";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import {
-  Text,
-  View,
-  ScrollView,
-  TextInput,
-  Image,
-  StyleSheet,
-  ToastAndroid,
-} from "react-native";
-import axios from "axios";
+import React, { useState } from 'react';
+import Checkbox from 'expo-checkbox';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import { router } from "expo-router";
+import { Text, View, ScrollView, TextInput, Image, StyleSheet, StatusBar } from 'react-native';
+import SafeArea from '../components/SafeArea';
 
 const logo = require("../assets/images/logo.png");
 
@@ -52,6 +44,8 @@ export default function Register() {
   return (
     <ScrollView>
       <View style={styles.container}>
+        <SafeArea />
+        <StatusBar backgroundColor={"#041329"} barStyle={"dark-content"} />
         <View style={styles.biruAtas}>
           <Image
             source={logo}
@@ -129,14 +123,16 @@ export default function Register() {
           </Text>
         </View>
         <TouchableOpacity
-          style={styles.buttonDaftarContainer}
-          onPress={() => postData()}
+          style={[styles.buttonDaftarContainer, !isChecked && styles.buttonDisabled]}
+          disabled={!isChecked}
         >
           <Text style={styles.buttonDaftar}>Daftar</Text>
         </TouchableOpacity>
-        <Text style={{ color: "gray", marginTop: 10, marginBottom: 55 }}>
-          Sudah memiliki akun? <Text style={styles.highlightedText}>Masuk</Text>
-        </Text>
+        <TouchableOpacity onPress={() => router.push("/Login")}>
+          <Text style={{ color: 'gray', marginTop: 10, marginBottom: 55, }}>
+            Sudah memiliki akun? <Text style={styles.highlightedText}>Masuk</Text>
+          </Text>
+        </TouchableOpacity>
       </View>
     </ScrollView>
   );
@@ -218,6 +214,12 @@ const styles = StyleSheet.create({
   buttonDaftar: {
     fontSize: 18,
     color: "#fff",
+  },
+  buttonDisabled: {
+    backgroundColor: 'grey',
+    borderRadius: 10,
+    paddingVertical: 8,
+    paddingHorizontal: 125,
   },
   checkboxContainer: {
     backgroundColor: "#062148",
