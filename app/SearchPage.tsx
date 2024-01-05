@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, TextInput, View, Text, TouchableOpacity } from "react-native";
+import { StyleSheet, TextInput, View, Text, TouchableOpacity, StatusBar } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -61,6 +61,7 @@ export default function SearchPage() {
     <View style={styles.container}>
       <ScrollView>
         <SafeArea />
+        <StatusBar backgroundColor={"#041329"} barStyle={"dark-content"} />
         <View style={styles.searchSection}>
           <FontAwesome
             style={styles.searchIcon}

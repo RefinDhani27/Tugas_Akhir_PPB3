@@ -6,6 +6,7 @@ import {
   ScrollView,
   StyleSheet,
   TouchableOpacity,
+  StatusBar
 } from "react-native";
 import SafeArea from "../components/SafeArea";
 import { Ionicons } from "@expo/vector-icons";
@@ -67,6 +68,7 @@ export default function HomePage() {
     <View style={{ backgroundColor: "#031126", width: "100%" }}>
       <ScrollView style={{ backgroundColor: "#062148", width: "100%" }}>
         <SafeArea />
+        <StatusBar backgroundColor={"#041329"} barStyle={"dark-content"} />
         <View
           style={{
             flexDirection: "row",

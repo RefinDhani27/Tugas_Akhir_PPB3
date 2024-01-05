@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
   ScrollView,
   StatusBar,
+  Dimensions,
 } from "react-native";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -63,9 +64,7 @@ export default function Detail() {
   return (
 
     <View style={styles.container}>
-
       <SafeArea />
-
       <StatusBar backgroundColor={"#041329"} barStyle={"dark-content"} />
       <View style={styles.containerDetail}>
         <Text style={styles.detailFilm}>DETAIL FILM</Text>
@@ -83,49 +82,28 @@ export default function Detail() {
           <View style={styles.contentImage}>
             <View style={styles.containerGambar}>
               <Image
-
-                source={{ uri: "http://192.168.1.73/api/movie/image/726209" }}
-
-                style={{ borderRadius: 20 }}
+                source={{ uri: "http://192.168.1.73/api/movie/image/" + id }}
+                style={styles.imageStyle}
+                resizeMode="contain"
               />
-
-            </View>
-            <View style={styles.containerButton}>
-              <TouchableOpacity style={styles.trailerButton}>
-                <Text
-                  style={{
-                    color: "white",
-                    fontWeight: "bold",
-                    textAlign: "center",
-                  }}
-                >
-                  TRAILER
-                </Text>
-              </TouchableOpacity>
-            </View>
           </View>
-          <View style={styles.sipnopsis}>
-            <Text style={styles.Cerita}>Sipnopsis Cerita</Text>
-            <Text style={styles.isiCerita}>
-                  {movies.overview}
-            </Text>
-            <Text style={styles.koleksi}>Jadikan Koleksi</Text>
-            <View style={styles.favorit}>
-              <TouchableOpacity onPress={() => null}>
-                <Ionicons name="bookmark"></Ionicons>
-              </TouchableOpacity>
-              <Text style={styles.tambahkan}>Tambahkan Ke Koleksi</Text>
-            </View>
-          </View>
-          <Image
-            source={{ uri: "http://192.168.1.73/api/movie/image/726209" }}
-            style={{ borderRadius: 20 }}
-            onError={(e) => console.log('Error loading image:', e)}
-          />
-
-        </ScrollView>
       </View>
-    </View>
+      <View style={styles.sipnopsis}>
+        <Text style={styles.Cerita}>Sipnopsis Cerita</Text>
+        <Text style={styles.isiCerita}>
+          {movies.overview}
+        </Text>
+        <Text style={styles.koleksi}>Jadikan Koleksi</Text>
+        <View style={styles.favorit}>
+          <TouchableOpacity onPress={() => null}>
+            <Ionicons name="bookmark"></Ionicons>
+          </TouchableOpacity>
+          <Text style={styles.tambahkan}>Tambahkan Ke Koleksi</Text>
+        </View>
+      </View>
+    </ScrollView>
+      </View >
+    </View >
   );
 }
 
@@ -172,8 +150,8 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   containerGambar: {
-    backgroundColor: 'red',
-
+    justifyContent: "center",
+    alignItems: "center",
   },
   containerButton: {
     justifyContent: "center",
@@ -191,6 +169,13 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "white",
     textAlign: "center",
+  },
+  imageStyle: {
+    width: Dimensions.get("screen").width / 2.0,
+
+    height: Dimensions.get("screen").width / 2.0 / 0.625,
+    borderRadius: 20,
+    marginTop: 20,
   },
   sipnopsis: {
     padding: 10,

@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity, ScrollView, StatusBar } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
+import SafeArea from '../components/SafeArea';
 
 export default function Bookmark() {
 
@@ -25,6 +26,7 @@ export default function Bookmark() {
     return (
         <ScrollView>
             <View style={styles.container}>
+            <SafeArea />
                 <StatusBar backgroundColor="#1e3a5f" barStyle="light-content" />
                 <Text style={styles.header}>KOLEKSI FILM</Text>
                 <View>
