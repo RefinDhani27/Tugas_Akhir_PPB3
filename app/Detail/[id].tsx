@@ -1,4 +1,5 @@
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
+import { useLocalSearchParams } from "expo-router";
 import React, { useState } from "react";
 import {
   View,
@@ -9,6 +10,8 @@ import {
   ScrollView,
 } from "react-native";
 const FlexboxExample = () => {
+  const { id } = useLocalSearchParams();
+  console.log(id);
   return (
     <View style={styles.container}>
       <Text style={styles.detailFilm}>DETAIL FILM</Text>

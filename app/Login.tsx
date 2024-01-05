@@ -18,9 +18,10 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const storeData = async (value: string) => {
+  const storeData = async (value: string, name: string) => {
     try {
       await AsyncStorage.setItem("token", value);
+      await AsyncStorage.setItem("name", name);
     } catch (e) {
       // saving error
     }
@@ -36,7 +37,8 @@ export default function Login() {
       console.log(response.data);
 
       if (response.data["data"]["token"] != null) {
-        storeData(response.data["data"]["token"]);
+        storeData(response.data["data"]["token"], response.data["user"]);
+        console.log(response.data["user"]);
 
         console.log("anj");
         router.push("/HomePage");

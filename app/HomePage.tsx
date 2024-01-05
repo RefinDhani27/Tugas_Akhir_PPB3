@@ -15,21 +15,27 @@ import { useState } from "react";
 import { router, Link } from "expo-router";
 
 export default function HomePage() {
+  const [imageData, setImageData] = useState(null);
+  const [name, setName] = useState("");
   async function getToken() {
     try {
       const value = await AsyncStorage.getItem("token");
-      if (value !== null) {
-        console.log(value);
-        return value;
+      console.log(await AsyncStorage.getItem("name"));
+      setName(await AsyncStorage.getItem("name"));
+      if (value == null) {
+        router.replace("/Login");
       }
+
+      return value;
     } catch (e) {
       // error reading value
     }
     return null;
   }
-  async function getData() {
+  async function getImage() {
     try {
-      const token = await getToken(); // Assuming getToken is an async function or returns a promise
+      const token = await getToken();
+      console.log(token); // Assuming getToken is an async function or returns a promise
       const config = {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -39,19 +45,22 @@ export default function HomePage() {
       console.log("Request Config:", config);
 
       const response = await axios.get(
-        "http://192.168.1.73/api/movie/",
+        "http://192.168.1.73/api/movie/image/453395",
         config
       );
+      console.log(response.data);
+      setImageData(response.data);
+      return response;
       console.log("ok");
-      return response.data; // Return the data from the response
+      console.log(response);
+      return response; // Return the data from the response
     } catch (error) {
       console.error(error);
       return null; // Return null in case of an error
     }
   }
-
-  const data = getData();
-  console.log(data);
+  getToken();
+  getImage();
 
   return (
     <View style={{ backgroundColor: "#031126", width: "100%" }}>
@@ -77,7 +86,7 @@ export default function HomePage() {
             />
             <View style={{ gap: 5 }}>
               <Text style={{ color: "#fff" }}>
-                Halo, <Text style={{ fontWeight: "bold" }}>Kak Zila</Text>
+                Halo, <Text style={{ fontWeight: "bold" }}>{name}</Text>
               </Text>
               <Text style={{ color: "rgba(255,255,255,0.5)" }}>
                 Pilih film favorit kamu
@@ -107,44 +116,42 @@ export default function HomePage() {
             flexWrap: "wrap",
           }}
         >
-          <Link
+          <Image
             style={styles.imageStyle}
-            href={{
-              pathname: "/Detail",
-              params: { id: "bacon" },
-            }}
-          >
+            source={{ uri: "http://192.168.1.73/api/movie/image/453395" }}
+            resizeMode="contain"
+          ></Image>
+
+          <Image
+            style={styles.imageStyle}
+            source={require("../assets/images/posterFilm.png")}
+            resizeMode="contain"
+          ></Image>
+
+          <Image
+            style={styles.imageStyle}
+            source={require("../assets/images/posterFilm.png")}
+            resizeMode="contain"
+          ></Image>
+
+          <Image
+            style={styles.imageStyle}
+            source={require("../assets/images/posterFilm.png")}
+            resizeMode="contain"
+          ></Image>
+
+          <Image
+            source={require("../assets/images/posterFilm.png")}
+            style={styles.imageStyle}
+            resizeMode="contain"
+          />
+          <TouchableOpacity onPress={() => router.push("/Detail/4456")}>
             <Image
-              style={{ width: "100%", height: "100%" }}
               source={require("../assets/images/posterFilm.png")}
+              style={styles.imageStyle}
               resizeMode="contain"
             />
-          </Link>
-          <Image
-            source={require("../assets/images/posterFilm.png")}
-            style={styles.imageStyle}
-            resizeMode="contain"
-          />
-          <Image
-            source={require("../assets/images/posterFilm.png")}
-            style={styles.imageStyle}
-            resizeMode="contain"
-          />
-          <Image
-            source={require("../assets/images/posterFilm.png")}
-            style={styles.imageStyle}
-            resizeMode="contain"
-          />
-          <Image
-            source={require("../assets/images/posterFilm.png")}
-            style={styles.imageStyle}
-            resizeMode="contain"
-          />
-          <Image
-            source={require("../assets/images/posterFilm.png")}
-            style={styles.imageStyle}
-            resizeMode="contain"
-          />
+          </TouchableOpacity>
         </View>
       </ScrollView>
       <View

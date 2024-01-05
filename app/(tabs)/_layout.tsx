@@ -27,6 +27,7 @@ export default function TabLayout() {
         name="index"
         options={{
           title: "HomeScreen",
+          headerShown: false,
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
         }}
       />
