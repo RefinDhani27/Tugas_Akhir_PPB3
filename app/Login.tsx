@@ -6,6 +6,7 @@ import {
   StyleSheet,
   StatusBar,
   TouchableOpacity,
+  ToastAndroid,
 } from "react-native";
 import SafeArea from "../components/SafeArea";
 import { router } from "expo-router";
@@ -13,7 +14,7 @@ import axios from "axios";
 import { useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const logo = require('../assets/images/logo.png');
+const logo = require("../assets/images/logo.png");
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -42,6 +43,8 @@ export default function Login() {
 
         console.log("anj");
         router.push("/HomePage");
+      } else {
+        ToastAndroid.show("Password Salah", ToastAndroid.SHORT);
       }
     } catch (error) {
       console.error("Error posting data:", error);
@@ -53,8 +56,14 @@ export default function Login() {
       <SafeArea />
       <StatusBar backgroundColor={"#041329"} barStyle={"dark-content"} />
       <View style={styles.biruAtas}>
-        <Image source={logo} style={{ height: 40, marginTop: 130 }} resizeMode="contain" />
-        <Text style={styles.text}>Masukkan akun untuk melanjutkan ke {'\n'}Rekom Movie</Text>
+        <Image
+          source={logo}
+          style={{ height: 40, marginTop: 130 }}
+          resizeMode="contain"
+        />
+        <Text style={styles.text}>
+          Masukkan akun untuk melanjutkan ke {"\n"}Rekom Movie
+        </Text>
       </View>
       <TextInput
         style={styles.input}
@@ -77,9 +86,9 @@ export default function Login() {
       >
         <Text style={styles.buttonMasuk}>Masuk</Text>
       </TouchableOpacity>
-      <View style={{ flexDirection: "row", gap: 5, marginTop: 10}}>
+      <View style={{ flexDirection: "row", gap: 5, marginTop: 10 }}>
         <Text style={styles.Text}>Belum memiliki akun?</Text>
-        <TouchableOpacity onPress={() => router.push("/Detail")}>
+        <TouchableOpacity onPress={() => router.push("/Register")}>
           <Text style={styles.link}>Daftar</Text>
         </TouchableOpacity>
       </View>
@@ -100,43 +109,43 @@ export default function Login() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#062148',
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#062148",
   },
   biruAtas: {
     height: 280,
     width: 420,
     backgroundColor: "#0C3358",
-    alignItems: 'center',
+    alignItems: "center",
     borderBottomLeftRadius: 2000,
     borderBottomRightRadius: 2000,
-    marginBottom: 20
+    marginBottom: 20,
   },
   text: {
-    color: 'white',
+    color: "white",
     marginTop: 40,
     marginBottom: 50,
-    textAlign: 'center'
+    textAlign: "center",
   },
   input: {
-    color: 'white',
+    color: "white",
     height: 45,
-    borderColor: '#304665',
+    borderColor: "#304665",
     borderWidth: 1,
     borderRadius: 10,
     paddingLeft: 15,
     fontSize: 17,
-    width: '85%',
+    width: "85%",
     marginBottom: 15,
     marginHorizontal: 10,
-    backgroundColor: '#304665'
+    backgroundColor: "#304665",
   },
   buttonMasukContainer: {
     backgroundColor: "#FCA806",
     borderRadius: 10,
     paddingVertical: 8,
-    paddingHorizontal: 125
+    paddingHorizontal: 125,
   },
   buttonMasuk: {
     fontSize: 18,

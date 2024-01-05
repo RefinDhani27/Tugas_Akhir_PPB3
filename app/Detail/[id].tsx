@@ -83,7 +83,9 @@ export default function Detail() {
           <View style={styles.contentImage}>
             <View style={styles.containerGambar}>
               <Image
+
                 source={{ uri: "http://192.168.1.73/api/movie/image/726209" }}
+
                 style={{ borderRadius: 20 }}
               />
 

@@ -51,9 +51,6 @@ export default function HomePage() {
 
       setImageData(response.data);
       return response;
-      console.log("ok");
-      console.log(response);
-      return response; // Return the data from the response
     } catch (error) {
       console.error(error);
       return null; // Return null in case of an error
@@ -61,7 +58,11 @@ export default function HomePage() {
   }
   getToken();
   getImage();
-
+  async function logout() {
+    AsyncStorage.removeItem("token");
+    AsyncStorage.clear;
+    router.replace("/Login");
+  }
   return (
     <View style={{ backgroundColor: "#031126", width: "100%" }}>
       <ScrollView style={{ backgroundColor: "#062148", width: "100%" }}>
@@ -93,7 +94,9 @@ export default function HomePage() {
               </Text>
             </View>
           </View>
-          <Ionicons name="log-out-outline" size={35} color={"#fff"} />
+          <TouchableOpacity onPress={() => logout()}>
+            <Ionicons name="log-out-outline" size={35} color={"#fff"} />
+          </TouchableOpacity>
         </View>
         <View
           style={{
