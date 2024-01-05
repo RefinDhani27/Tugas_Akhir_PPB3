@@ -11,7 +11,7 @@ import {
   TouchableOpacity,
   NativeSyntheticEvent,
   NativeScrollEvent,
-  StatusBar
+  StatusBar,
 } from "react-native";
 
 const logo = require("../../assets/images/logo.png");
@@ -28,14 +28,15 @@ const getData = async () => {
     const value = await AsyncStorage.getItem("token");
     if (value != null && value != undefined) {
       console.log(value);
-      router.push("/HomePage");
+      router.replace("/HomePage");
     }
   } catch (e) {
     // error reading value
   }
 };
-getData();
+
 export default function TabOneScreen() {
+  getData();
   const [activeIndex, setActiveIndex] = useState(0);
   const carouselRef = useRef<ScrollView>(null);
 
@@ -84,7 +85,7 @@ export default function TabOneScreen() {
       </View>
       <TouchableOpacity
         style={styles.buttonMasukContainer}
-        onPress={() => router.push("/Login")}
+        onPress={() => router.replace("/Login")}
       >
         <Text style={styles.buttonMasuk}>MASUK</Text>
       </TouchableOpacity>

@@ -31,7 +31,7 @@ export default function Detail() {
           <View style={styles.contentImage}>
             <View style={styles.containerGambar}>
               <Image
-                source={require("../assets/images/Film_1.png")}
+                source={require("../../assets/images/Film_1.png")}
                 style={{ borderRadius: 20 }}
               />
             </View>
