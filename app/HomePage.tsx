@@ -18,7 +18,6 @@ import { router, Link } from "expo-router";
 export default function HomePage() {
 
 
-router.push('/UbahProfile');
 
 
 
@@ -86,24 +85,30 @@ router.push('/UbahProfile');
             marginVertical: 10,
           }}
         >
-          <View style={{ flexDirection: "row", alignItems: "center", gap: 10 }}>
-            <Image
-              source={require("../assets/images/Profile.png")}
-              style={{
-                width: 50,
-                height: 50,
-                borderRadius: 2000,
-              }}
-            />
-            <View style={{ gap: 5 }}>
-              <Text style={{ color: "#fff" }}>
-                Halo, <Text style={{ fontWeight: "bold" }}>{name}</Text>
-              </Text>
-              <Text style={{ color: "rgba(255,255,255,0.5)" }}>
-                Pilih film favorit kamu
-              </Text>
+          <TouchableOpacity onPress={() => router.push("/Profile")}>
+            <View
+              style={{ flexDirection: "row", alignItems: "center", gap: 10 }}
+            >
+              <Image
+                source={require("../assets/images/Profile.png")}
+                style={{
+                  width: 50,
+                  height: 50,
+                  borderRadius: 2000,
+                }}
+              />
+
+              <View style={{ gap: 5 }}>
+                <Text style={{ color: "#fff" }}>
+                  Halo, <Text style={{ fontWeight: "bold" }}>{name}</Text>
+                </Text>
+                <Text style={{ color: "rgba(255,255,255,0.5)" }}>
+                  Pilih film favorit kamu
+                </Text>
+              </View>
             </View>
-          </View>
+          </TouchableOpacity>
+
           <TouchableOpacity onPress={() => logout()}>
             <Ionicons name="log-out-outline" size={35} color={"#fff"} />
           </TouchableOpacity>
@@ -120,7 +125,16 @@ router.push('/UbahProfile');
             style={{ height: 3, width: "100%", backgroundColor: "#304667" }}
           />
         </View>
-        <Text style={{color: 'white', fontWeight: 'bold', fontSize: 22, padding: 15}}>Top 10 Film Rekomendasi</Text>
+        <Text
+          style={{
+            color: "white",
+            fontWeight: "bold",
+            fontSize: 22,
+            padding: 15,
+          }}
+        >
+          Top 10 Film Rekomendasi
+        </Text>
         <View
           style={{
             flexDirection: "row",
@@ -140,32 +154,33 @@ router.push('/UbahProfile');
             ></Image>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => router.push("/Detail/726209")}>
-          <Image
-            style={styles.imageStyle}
-            source={{ uri: "http://192.168.136.108/api/movie/image/726209" }}
-            resizeMode="contain"
-          ></Image>
+
+            <Image
+              style={styles.imageStyle}
+              source={{ uri: "http://192.168.1.73/api/movie/image/726209" }}
+              resizeMode="contain"
+            ></Image>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => router.push("/Detail/572802")}>
-          <Image
-            style={styles.imageStyle}
-            source={{ uri: "http://192.168.136.108/api/movie/image/572802" }}
-            resizeMode="contain"
-          ></Image>
+            <Image
+              style={styles.imageStyle}
+              source={{ uri: "http://192.168.1.73/api/movie/image/572802" }}
+              resizeMode="contain"
+            ></Image>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => router.push("/Detail/787699")}>
-          <Image
-            style={styles.imageStyle}
-            source={{ uri: "http://192.168.136.108/api/movie/image/787699" }}
-            resizeMode="contain"
-          ></Image>
+            <Image
+              style={styles.imageStyle}
+              source={{ uri: "http://192.168.1.73/api/movie/image/787699" }}
+              resizeMode="contain"
+            ></Image>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => router.push("/Detail/872585")}>
-          <Image
-            source={{ uri: "http://192.168.136.108/api/movie/image/872585" }}
-            style={styles.imageStyle}
-            resizeMode="contain"
-          />
+            <Image
+              source={{ uri: "http://192.168.1.73/api/movie/image/872585" }}
+              style={styles.imageStyle}
+              resizeMode="contain"
+            />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => router.push("/Detail/157336")}>
             <Image
