@@ -38,7 +38,7 @@ export default function Register() {
       };
       if (password == confirmPassword) {
         const response = await axios.post(
-          "http://192.168.1.73/api/register",
+          "http://192.168.136.108/api/register",
           data
         ); // Replace with your API endpoint
         ToastAndroid.show("Daftar Berhasil", ToastAndroid.SHORT);
@@ -138,6 +138,7 @@ export default function Register() {
             !isChecked && styles.buttonDisabled,
           ]}
           disabled={!isChecked}
+          onPress={()=>postData()}
         >
           <Text style={styles.buttonDaftar}>Daftar</Text>
         </TouchableOpacity>

@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import {
   StyleSheet,
@@ -12,6 +13,7 @@ import { FontAwesome } from "@expo/vector-icons";
 import { router } from "expo-router";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+
 
 export default function Bookmark() {
   const [movies, setMovies] = useState([]);
@@ -41,7 +43,7 @@ export default function Bookmark() {
       };
 
       const response = await axios.get(
-        `http://192.168.1.73/api/bookmark`,
+        `http://192.168.136.108/api/bookmark`,
         config
       );
       setMovies(response.data);
@@ -65,7 +67,7 @@ export default function Bookmark() {
       };
 
       const response = await axios.post(
-        "http://192.168.1.73/api/bookmark/delete",
+        "http://192.168.136.108/api/bookmark/delete",
         data,
         config
       ); // Replace with your API endpoint
@@ -74,6 +76,7 @@ export default function Bookmark() {
       console.error("Error posting data:", error);
     }
   };
+
 
   getData();
   const films = [
@@ -105,17 +108,17 @@ export default function Bookmark() {
               <View style={styles.cardContainer}>
                 <Image
                   source={{
-                    uri: "http://192.168.1.73/api/movie/image/" + film.movie_id,
+                    uri: "http://192.168.136.108/api/movie/image/" + film.movie_id,
                   }}
                   style={styles.image}
                 />
                 <View style={styles.details}>
                   <Text style={styles.textJenis}>{film.genre}</Text>
                   <View style={styles.buttonContainer}>
-                    <TouchableOpacity
+                    <TouchableOpacity style={{backgroundColor: '#FFAA06', borderRadius: 10, padding: 10}}
                       onPress={() => router.push("/Detail/" + film.movie_id)}
                     >
-                      <Text>Detail Movie</Text>
+                      <Text style={{color: 'white'}}>Detail Movie</Text>
                     </TouchableOpacity>
                     <FontAwesome name="bookmark" size={24} color="white" />
                     <TouchableOpacity
@@ -126,6 +129,7 @@ export default function Bookmark() {
                       <FontAwesome name="trash-o" size={24} color="white" />
                     </TouchableOpacity>
                   </View>
+
                 </View>
               </View>
             </View>

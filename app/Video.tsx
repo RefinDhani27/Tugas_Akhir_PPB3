@@ -2,6 +2,7 @@ import * as React from "react";
 import { View, StyleSheet, Button } from "react-native";
 import { Video, ResizeMode } from "expo-av";
 
+
 export default function VideoPlay() {
   const video = React.useRef(null);
   const [status, setStatus] = React.useState({});
@@ -30,6 +31,7 @@ export default function VideoPlay() {
       </View>
     </View>
   );
+
 }
 
 const styles = StyleSheet.create({

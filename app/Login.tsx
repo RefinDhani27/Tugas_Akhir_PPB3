@@ -34,7 +34,7 @@ export default function Login() {
         password: password,
       };
 
-      const response = await axios.post("http://192.168.1.73/api/login", data); // Replace with your API endpoint
+      const response = await axios.post("http://192.168.136.108/api/login", data); // Replace with your API endpoint
       console.log(response.data);
 
       if (response.data["data"]["token"] != null) {
