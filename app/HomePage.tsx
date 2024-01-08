@@ -17,13 +17,6 @@ import { router, Link } from "expo-router";
 
 export default function HomePage() {
 
-
-router.push('/UbahProfile');
-
-
-
-
-
   const [imageData, setImageData] = useState(null);
   const [name, setName] = useState("");
   async function getToken() {
