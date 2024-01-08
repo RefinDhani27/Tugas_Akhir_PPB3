@@ -1,14 +1,17 @@
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { Dimensions, Image, View, Text, TouchableOpacity } from "react-native";
 import SafeArea from "../components/SafeArea";
+import { router } from "expo-router";
 
 export default function Profile() {
   return (
     <View style={{ backgroundColor: "#062148", width: "100%", height: "100%" }}>
       <SafeArea />
       <View style={{ flexDirection: "row", padding: 20 }}>
-        <View style={{ position: "absolute", left: 20, alignSelf: "center" }}>
-          <Ionicons name="arrow-back" size={24} color={"#fff"} />
+        <View style={{ position: "absolute", left: 20, alignSelf: "center", zIndex: 2 }}>
+          <TouchableOpacity onPress={()=>router.back()}>
+            <Ionicons name="arrow-back" size={24} color={"#fff"} />
+          </TouchableOpacity>
         </View>
 
         <Text
@@ -80,6 +83,7 @@ export default function Profile() {
           flexDirection: "row",
           gap: 10,
         }}
+        onPress={()=>router.push('/UbahProfile')}
       >
         <MaterialCommunityIcons
           name="pencil-circle"

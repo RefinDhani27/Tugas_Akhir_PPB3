@@ -43,7 +43,7 @@ export default function Bookmark() {
       };
 
       const response = await axios.get(
-        `http://192.168.136.108/api/bookmark`,
+        `http://192.168.1.73/api/bookmark`,
         config
       );
       setMovies(response.data);
@@ -67,7 +67,7 @@ export default function Bookmark() {
       };
 
       const response = await axios.post(
-        "http://192.168.136.108/api/bookmark/delete",
+        "http://192.168.1.73/api/bookmark/delete",
         data,
         config
       ); // Replace with your API endpoint
@@ -108,7 +108,7 @@ export default function Bookmark() {
               <View style={styles.cardContainer}>
                 <Image
                   source={{
-                    uri: "http://192.168.136.108/api/movie/image/" + film.movie_id,
+                    uri: "http://192.168.1.73/api/movie/image/" + film.movie_id,
                   }}
                   style={styles.image}
                 />
